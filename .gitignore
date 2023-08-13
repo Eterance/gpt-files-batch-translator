@@ -1,0 +1,17 @@
+data/*
+
+.vscode/
+
+keys.txt
+
+__pycache__/
+
+.mypy_cache/
+
+temporary/
+
+result/
+
+old_tokenizer_result/
+
+sparc/
