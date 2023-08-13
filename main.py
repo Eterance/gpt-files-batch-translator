@@ -39,7 +39,6 @@ INPUT_FOLDER = os.path.join("data", "input").replace("\\", "/")
 OUTPUT_FOLDER = os.path.join("data", "output").replace("\\", "/")
 
 
-
 def worker_helper(args_dict):
     return worker(**args_dict)
 
@@ -98,7 +97,7 @@ def worker(index:int, filename_prompt:str, content_prompt:str, interactor_manage
         prompt=input_messages, 
         max_tokens=GENERATE_MAX_GENERATED_LENGTH,
         completion_type=CompletionTypeEnum.ChatCompletion,
-        stop = ["---"],
+        stop = [],
         )
     temp_generated_dict["content_response"] = response
     temp_generated_dict["content"] = response["choices"][0]["message"]["content"]
@@ -248,7 +247,7 @@ def main()->None:
         os.makedirs(OUTPUT_FOLDER)
         
     for result_dict in total_result_list:
-            file_path = os.path.join(OUTPUT_FOLDER, result_dict["filename"])
+            file_path = os.path.join(OUTPUT_FOLDER, result_dict["filename"].strip())
             with open(file_path, 'w', encoding='utf-8') as file:
                 file.write(result_dict["content"])
         
